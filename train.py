@@ -103,29 +103,21 @@ def train_model(config, logger):
     )
 
     # Load and split dataset
-    logger.info("Loading MNIST dataset...")
-    full_dataset = datasets.MNIST(
-        "./data", train=True, download=True, transform=transform
-    )
-    test_dataset = datasets.MNIST("./data", train=False, transform=transform)
+    # this dataset is already given with an 80-10-10 split
+    logger.info("Loading Plantnet-300K dataset...")
+    train_dataset = datasets.ImageFolder("./data/plantnet_300K/images/train", transform=transform)
+    test_dataset = datasets.ImageFolder("./data/plantnet_300K/images/test", transform=transform)
+    val_dataset = datasets.ImageFolder("./data/plantnet_300K/images/val", transform=transform)
 
-    # Use only 10% of the data
-    total_size = len(full_dataset) // 10  # Reduce to 1/10th
+    # only use 10% of the data
+    train_dataset = torch.utils.data.Subset(
+        train_dataset, range(len(train_dataset) // 10)
+    )
     test_dataset = torch.utils.data.Subset(
         test_dataset, range(len(test_dataset) // 10)
-    )  # Reduce test set too
-
-    # Calculate splits
-    train_size = int(config.train_split * total_size)
-    val_size = int(config.val_split * total_size)
-    test_size = total_size - train_size - val_size
-
-    # Use subset of full dataset
-    subset_indices = range(total_size)
-    subset_dataset = torch.utils.data.Subset(full_dataset, subset_indices)
-
-    train_dataset, val_dataset, _ = random_split(
-        subset_dataset, [train_size, val_size, test_size]
+    )
+    val_dataset = torch.utils.data.Subset(
+        val_dataset, range(len(val_dataset) // 10)
     )
 
     # Create data loaders
