@@ -1,8 +1,9 @@
 import torch
 import torch.nn as nn
 import torch.optim as optim
-from torch.utils.data import DataLoader, random_split
-from torchvision import datasets, transforms
+from torch.utils.data import DataLoader
+from torchvision import datasets
+from torchvision.transforms import v2 as transforms_v2
 from sklearn.metrics import confusion_matrix, precision_recall_fscore_support
 import time
 import json
@@ -94,11 +95,13 @@ def train_model(config, logger):
     logger.info(f"Using device: {device}")
 
     # Data loading and preprocessing
-    transform = transforms.Compose(
+    transform = transforms_v2.Compose(
         [
-            transforms.Resize(config.image_size),
-            transforms.ToTensor(),
-            transforms.Normalize((0.1307,), (0.3081,)),
+            transforms_v2.Resize(config.image_size),
+            transforms_v2.RandomCrop(config.image_size),
+            transforms_v2.ToImage(),
+            transforms_v2.ToDtype(torch.float32, scale=True),
+            # transforms_v2.Normalize((0.1307,), (0.3081,)),    # TODO find means and stds
         ]
     )
 

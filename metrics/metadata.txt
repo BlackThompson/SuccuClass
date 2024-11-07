@@ -1,0 +1,8 @@
+This file includes some notes about the settings used for the results
+
+final_metrics_20241107_195149.json
+    Grayscale, No Normalisation, Image Size 64, Square Cropping
+
+final_metrics_20241107_204458.json
+    No Normalisation, Image Size 64, Square Cropping
+

@@ -2,7 +2,7 @@ class ModelConfig:
     def __init__(self):
         # Model Architecture Parameters
         self.initial_channels = 32
-        self.num_classes = 10
+        self.num_classes = 1081
         self.dropout_rate = 0.2
         self.width_multiplier = 1.0  # Controls the width of the network
         self.expansion_factor = 6  # For inverted residuals
@@ -28,7 +28,7 @@ class ModelConfig:
         self.weight_decay = 0.0001
 
         # Data Parameters
-        self.image_size = 32
+        self.image_size = 64
         self.train_split = 0.8
         self.val_split = 0.1
         self.test_split = 0.1
