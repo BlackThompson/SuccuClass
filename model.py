@@ -56,7 +56,7 @@ class MobileNetV2(nn.Module):
         # building first layer
         self.features = [
             nn.Sequential(
-                nn.Conv2d(1, input_channel, 3, 2, 1, bias=False),
+                nn.Conv2d(config.input_channels, input_channel, 3, 2, 1, bias=False),
                 nn.BatchNorm2d(input_channel),
                 nn.ReLU6(inplace=True),
                 nn.Dropout2d(config.dropout_rate),

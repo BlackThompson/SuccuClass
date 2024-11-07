@@ -44,3 +44,6 @@ class ModelConfig:
         self.lr_scheduler_type = "cosine"  # 'step', 'cosine', 'plateau'
         self.lr_scheduler_step_size = 10
         self.lr_scheduler_gamma = 0.1
+
+        # Input Channels
+        self.input_channels = 3
