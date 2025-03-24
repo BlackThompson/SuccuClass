@@ -1,25 +1,255 @@
-# SuccuClass: Succulent Plant Classification Using Lightweight Model
+# SuccuClass 多肉植物智能分类系统使用说明书
 
-![License](https://img.shields.io/badge/license-MIT-brightgreen)
+## 一、软件简介
 
-## Usage
+SuccuClass是一款专门用于多肉植物品种识别的智能软件。它采用先进的深度学习技术，能够快速准确地识别多肉植物的品种。本软件具有图形化界面，操作简单直观，适合多肉植物爱好者、植物园工作人员和研究人员使用。
 
+### 1.1 主要功能
+- 多肉植物图片识别
+- 实时摄像头识别
+- 批量图片处理
+- 模型训练与优化
+- 数据集管理
+- 结果可视化分析
+
+### 1.2 适用场景
+- 多肉植物品种鉴定
+- 植物园植物管理
+- 植物学研究
+- 植物交易平台
+- 教学演示
+
+## 二、安装说明
+
+### 2.1 系统要求
+- 操作系统：Windows 10/11、Linux、macOS
+- CPU：Intel i5/AMD Ryzen 5或更高
+- 内存：8GB或更高
+- 硬盘空间：至少10GB可用空间
+- GPU：NVIDIA显卡（推荐，用于加速）
+
+### 2.2 安装步骤
+1. 下载软件包
+   - 访问官方网站：https://github.com/yourusername/SuccuClass
+   - 下载最新版本的软件包
+
+2. 安装Python环境
+   ```bash
+   # 下载并安装Python 3.8或更高版本
+   # 访问 https://www.python.org/downloads/
+   ```
+
+3. 安装软件
+   ```bash
+   # 解压下载的软件包
+   # 打开命令行，进入软件目录
+   cd SuccuClass
+
+   # 创建虚拟环境
+   python -m venv venv
+
+   # 激活虚拟环境
+   # Windows:
+   venv\Scripts\activate
+   # Linux/macOS:
+   source venv/bin/activate
+
+   # 安装依赖
+   pip install -r requirements.txt
+   ```
+
+## 三、使用指南
+
+### 3.1 启动软件
+```bash
+python ui/run.py
 ```
-git clone https://github.com/BlackThompson/SuccuClass.git
 
-pip install -r requirements.txt
+### 3.2 界面说明
+软件界面分为以下几个主要区域：
+1. 左侧导航栏：包含各个功能模块的入口
+2. 顶部工具栏：显示当前页面的操作按钮
+3. 主内容区：显示具体功能的内容
+4. 底部状态栏：显示软件状态和提示信息
 
-python train.py
-```
+### 3.3 功能模块使用说明
 
-## Explanation
+#### 3.3.1 图片识别
+1. 单张图片识别
+   - 点击"推理"标签页
+   - 点击"上传图片"按钮
+   - 选择要识别的图片文件
+   - 等待识别结果显示
+   - 查看识别结果和置信度
 
-- `spider/` includes the code for  scraping succulent plant images from Bing Images.
-- `data/` includes the code to preprocess downloaded datasets.
-- `utils/` includes code for train and evaluation modules.
-- `data_augmentation.py` is the code for image augmentation.
-- `train.py` is the code for training.
+2. 摄像头实时识别
+   - 点击"推理"标签页
+   - 点击"打开摄像头"按钮
+   - 对准要识别的多肉植物
+   - 实时查看识别结果
 
-## Dataset
+3. 批量识别
+   - 点击"推理"标签页
+   - 点击"批量处理"按钮
+   - 选择包含多张图片的文件夹
+   - 等待处理完成
+   - 查看批量识别结果
 
-We use three datasets in our study, two public datasets [PlantNet-300K](https://github.com/plantnet/PlantNet-300K) and [PlantCLEF](https://www.imageclef.org/) ; and our collocted dataset SuccuClass, which can be downloaded from [Google Drive](https://drive.google.com/drive/folders/11Gz_HvlQgRVem2t5YKlvNRKk-4FocJ7N?usp=drive_link).
+#### 3.3.2 数据集管理
+1. 添加数据集
+   - 点击"数据集"标签页
+   - 点击"添加数据集"按钮
+   - 选择图片文件夹
+   - 设置数据集名称和类型（训练集/验证集/测试集）
+   - 等待数据导入完成
+
+2. 数据集预览
+   - 在数据集列表中点击要预览的数据集
+   - 查看数据集统计信息
+   - 浏览数据集中的图片
+
+3. 数据增强
+   - 选择要增强的数据集
+   - 点击"数据增强"按钮
+   - 选择增强方式（旋转、翻转、缩放等）
+   - 设置增强参数
+   - 点击"开始增强"
+
+#### 3.3.3 模型训练
+1. 选择模型
+   - 点击"训练"标签页
+   - 从模型列表中选择要使用的模型
+   - 可选的模型包括：
+     - ResNet50（推荐，准确率高）
+     - EfficientNet（速度快）
+     - MobileNetV3（轻量级）
+
+2. 配置训练参数
+   - 设置学习率（默认0.001）
+   - 设置批次大小（默认32）
+   - 设置训练轮数（默认100）
+   - 选择是否使用数据增强
+   - 设置模型保存路径
+
+3. 开始训练
+   - 点击"开始训练"按钮
+   - 监控训练进度
+   - 查看损失值和准确率变化
+   - 训练完成后自动保存模型
+
+#### 3.3.4 结果分析
+1. 训练过程分析
+   - 点击"可视化"标签页
+   - 选择要查看的训练记录
+   - 查看损失曲线和准确率曲线
+   - 分析模型性能
+
+2. 混淆矩阵
+   - 在可视化页面选择"混淆矩阵"
+   - 查看各类别的识别准确率
+   - 分析易混淆的类别
+
+3. 特征分布
+   - 选择"特征分布"图表
+   - 查看不同类别的特征分布
+   - 分析类别间的区分度
+
+### 3.4 高级功能
+
+#### 3.4.1 模型导出
+1. 选择要导出的模型
+2. 点击"导出"按钮
+3. 选择导出格式（ONNX/TorchScript）
+4. 设置导出参数
+5. 点击"确认导出"
+
+#### 3.4.2 自定义训练
+1. 准备数据集
+   - 收集多肉植物图片
+   - 按类别分类存放
+   - 确保图片质量
+
+2. 数据预处理
+   - 调整图片大小
+   - 标准化处理
+   - 数据增强
+
+3. 训练模型
+   - 选择基础模型
+   - 设置训练参数
+   - 开始训练
+   - 监控训练过程
+
+## 四、常见问题解答
+
+### 4.1 安装问题
+Q: 安装依赖时出现错误怎么办？
+A: 请按以下步骤操作：
+1. 确保Python版本正确（3.8或更高）
+2. 更新pip：
+   ```bash
+   pip install --upgrade pip
+   ```
+3. 重新安装依赖：
+   ```bash
+   pip install -r requirements.txt --no-cache-dir
+   ```
+
+### 4.2 使用问题
+Q: 识别结果不准确怎么办？
+A: 可以尝试以下方法：
+1. 确保图片清晰度
+2. 调整拍摄角度
+3. 使用更好的光照条件
+4. 尝试不同的模型
+
+Q: 训练时内存不足怎么办？
+A: 可以：
+1. 减小批次大小
+2. 使用数据生成器
+3. 减少图片尺寸
+4. 关闭其他占用内存的程序
+
+### 4.3 性能优化
+Q: 如何提高识别速度？
+A: 建议：
+1. 使用GPU加速
+2. 选择轻量级模型
+3. 优化图片大小
+4. 使用批处理模式
+
+## 五、更新日志
+
+### v1.0.0 (2024-03-23)
+- 初始版本发布
+- 支持基本识别功能
+- 提供三种预训练模型
+
+### v1.1.0 (计划中)
+- 添加更多模型支持
+- 优化识别速度
+- 增加批量处理功能
+
+## 六、技术支持
+
+### 6.1 获取帮助
+- 查看在线文档：https://github.com/yourusername/SuccuClass/docs
+- 提交问题：https://github.com/yourusername/SuccuClass/issues
+- 联系技术支持：support@succuclass.com
+
+### 6.2 反馈建议
+如果您有任何建议或发现bug，请：
+1. 访问GitHub Issues页面
+2. 点击"New Issue"
+3. 详细描述问题
+4. 提交反馈
+
+## 七、许可证
+
+本软件采用MIT许可证，详见LICENSE文件。
+
+---
+
+<div align="center">
+  <p>© 2024 SuccuClass. All rights reserved.</p>
+</div>
